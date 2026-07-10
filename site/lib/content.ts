@@ -27,6 +27,7 @@ export interface TaskMeta {
   level: Level;
   time: number;
   prepare: string[];
+  selfcheck?: string[];
   updated: string;
   status?: "ready" | "coming-soon";
 }
