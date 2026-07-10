@@ -2,10 +2,11 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 
+import type { Audience, Level } from "./taxonomy";
+
 const CONTENT_DIR = path.join(process.cwd(), "content");
 
-export type Audience = "teacher" | "admin" | "trainer";
-export type Level = "入門" | "進階" | "挑戰";
+export type { Audience, Level } from "./taxonomy";
 
 export interface ModuleMeta {
   slug: string;
@@ -62,8 +63,3 @@ export function getTask(slug: string) {
   return getTasks().find((t) => t.slug === slug);
 }
 
-export const AUDIENCE_LABEL: Record<Audience, string> = {
-  teacher: "教師",
-  admin: "行政",
-  trainer: "講師",
-};
