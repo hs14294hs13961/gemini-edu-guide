@@ -45,6 +45,28 @@ npm run lint     # 程式碼檢查
 
 讀 `materials/` 內新素材 → 依 schema 產 MDX 草稿 → 過品質檢核（開發文檔第 9 節四條）→ 本機預覽 → 推 GitHub。
 
-## 版本控管（過渡方案）
+## 版本控管與自動化管線（正式流程）
 
-- 此雲端同步資料夾不允許 git 鎖定檔操作，git repo 放沙盒（GIT_DIR 外置），每次 commit 後輸出 `版本備份/gemini-edu-guide.bundle`（單一檔案，`git clone gemini-edu-guide.bundle` 可還
+**改檔案 → 推 GitHub → Vercel 自動建置 → 網站更新**（推 main 後約 1-2 分鐘上線）
+
+- 正式網站：https://gemini-edu-guide.vercel.app
+- GitHub：https://github.com/hs14294hs13961/gemini-edu-guide（公開）；Vercel 專案 root directory=`site`
+- Cowork 沙盒的 npm 與 github.com 被網路政策擋（403），因此：改檔＝開「github.com/<repo>/upload/main/<目標資料夾>」用 file_upload 工具上傳同名檔覆蓋；建置驗證看 Vercel deployment 頁（錯誤點「3 errors」篩選）
+- 已踩過的雷：客戶端元件不可 import `lib/content.ts`（含 fs），共用型別/常數放 `lib/taxonomy.ts`；MDX 內文的 `<中文標籤>` 要寫成 `{'<...>'}` 或用 `{`模板字串`}`；`next-mdx-remote` 需 ^6（v5 有漏洞會被 Vercel 擋）
+- 本地備援：git repo 放沙盒（GIT_DIR 外置，雲端同步碟不允許 git 鎖定檔），每輪 commit 後輸出 `版本備份/gemini-edu-guide.bundle`
+- 每完成一輪修改：commit ＋ 更新 bundle ＋ 推 GitHub，三者同步
+
+## 品牌與作者
+
+- 全站作者署名：《薇糖紹冰的教學日誌》（不用個人名）
+
+## 學習護照
+
+- 進度、蓋章、自我檢核、成果記錄存 localStorage（key: `gemini-edu-passport`），不上傳
+- 新增可蓋章內容時，需同步登錄 `lib/progress.ts` 的 `PASSPORT_ITEMS` 與 `PASSPORT_TOTALS`
+
+## 協作習慣
+
+- 使用者是老師不是工程師：解釋技術決定時用白話，重大變更先說明再動手
+- 改動前先讀現有元件，沿用既有模式；不要引入新依賴除非必要
+- 每次完成後告知 Vercel 預覽網址驗收
