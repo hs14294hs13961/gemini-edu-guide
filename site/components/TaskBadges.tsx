@@ -14,7 +14,7 @@ export function LevelBadge({ level }: { level: Level }) {
 export function AudienceBadge({ audience }: { audience: Audience[] }) {
   return (
     <span className="text-[12px] text-ink-48">
-      {audience.map((a) => AUDIENCE_LABEL[a]).join("・")}
+      {(audience ?? []).map((a) => AUDIENCE_LABEL[a]).join("・")}
     </span>
   );
 }

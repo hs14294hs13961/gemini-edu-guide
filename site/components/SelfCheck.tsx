@@ -9,7 +9,7 @@ export default function SelfCheck({ id, items }: { id: string; items: string[] }
     <div className="my-5">
       <h2 className="mb-3 text-[26px] font-semibold tracking-tight">自我檢核（點一下打勾，自動儲存）</h2>
       <div className="rounded-card border border-hairline bg-canvas px-6 py-2">
-        {items.map((item, i) => (
+        {(items ?? []).map((item, i) => (
           <label key={i} className="flex cursor-pointer items-start gap-3 border-b border-divider-soft py-3 last:border-none">
             <input
               type="checkbox"
