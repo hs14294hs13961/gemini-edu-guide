@@ -21,7 +21,7 @@ export default async function TaskPage({ params }: { params: { slug: string } })
 
   const { content } = await compileMDX({
     source: task.body,
-    components: { Prompt, Check, SelfCheck },
+    components: { Prompt, Check },
   });
 
   return (
@@ -47,6 +47,7 @@ export default async function TaskPage({ params }: { params: { slug: string } })
         </div>
       </header>
       <div className="prose-edu mx-auto max-w-[860px] px-5 py-14">{content}
+        {(task.selfcheck ?? []).length > 0 && <SelfCheck id={`task-${task.slug}`} items={task.selfcheck ?? []} />}
         <NoteBox id={`task-${task.slug}`} />
         <StampButton id={`task-${task.slug}`} />
       </div>
