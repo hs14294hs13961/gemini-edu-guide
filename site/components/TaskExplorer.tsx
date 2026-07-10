@@ -2,7 +2,18 @@
 import { useState } from "react";
 import Link from "next/link";
 import { AudienceBadge, LevelBadge } from "./TaskBadges";
-import type { Audience, Level, TaskMeta } from "@/lib/content";
+import type { Audience, Level } from "@/lib/taxonomy";
+
+export interface TaskCardMeta {
+  slug: string;
+  title: string;
+  summary: string;
+  audience: Audience[];
+  level: Level;
+  time: number;
+  prepare: string[];
+  status?: "ready" | "coming-soon";
+}
 import DoneMark from "./DoneMark";
 
 const AUDIENCES: { key: Audience | "all"; label: string }[] = [
@@ -13,7 +24,7 @@ const AUDIENCES: { key: Audience | "all"; label: string }[] = [
 ];
 const LEVELS: (Level | "all")[] = ["all", "入門", "進階", "挑戰"];
 
-export default function TaskExplorer({ tasks }: { tasks: TaskMeta[] }) {
+export default function TaskExplorer({ tasks }: { tasks: TaskCardMeta[] }) {
   const [audience, setAudience] = useState<Audience | "all">("all");
   const [level, setLevel] = useState<Level | "all">("all");
 

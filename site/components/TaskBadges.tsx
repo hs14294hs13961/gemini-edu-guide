@@ -1,4 +1,4 @@
-import { AUDIENCE_LABEL, type Audience, type Level } from "@/lib/content";
+import { AUDIENCE_LABEL, type Audience, type Level } from "@/lib/taxonomy";
 
 export function LevelBadge({ level }: { level: Level }) {
   // 單一強調色原則：難度用藍色深淺與外框區分，不引入第二色
