@@ -39,7 +39,7 @@ export default async function TaskPage({ params }: { params: { slug: string } })
           <div className="mt-6 rounded-card border border-hairline bg-canvas p-6">
             <p className="mb-2 text-[13px] font-semibold text-ink-48">開始前請準備</p>
             <ul className="list-disc space-y-1 pl-5 text-[15px] text-ink-80">
-              {task.prepare.map((p) => (
+              {(task.prepare ?? []).map((p) => (
                 <li key={p}>{p}</li>
               ))}
             </ul>
