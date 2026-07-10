@@ -41,6 +41,9 @@ export const passport = {
 export interface PassportItem { id: string; kind: "學習路徑" | "任務卡"; title: string; href: string }
 export const PASSPORT_ITEMS: PassportItem[] = [
   { id: "module-parts", kind: "學習路徑", title: "PARTS 提示詞架構", href: "/learn/parts/" },
+  { id: "module-deep-research", kind: "學習路徑", title: "Deep Research", href: "/learn/deep-research/" },
+  { id: "module-notebooklm", kind: "學習路徑", title: "NotebookLM", href: "/learn/notebooklm/" },
   { id: "task-parts-first-lesson-plan", kind: "任務卡", title: "用 PARTS 寫出第一個教案提示詞", href: "/tasks/parts-first-lesson-plan/" },
+  { id: "task-notebooklm-quiz", kind: "任務卡", title: "用 NotebookLM 從課本生成課後測驗", href: "/tasks/notebooklm-quiz/" },
 ];
-export const PASSPORT_TOTALS = { path: { online: 1, all: 7 }, tasks: { online: 1, all: 4 } };
+export const PASSPORT_TOTALS = { path: { online: 3, all: 7 }, tasks: { online: 2, all: 4 } };
