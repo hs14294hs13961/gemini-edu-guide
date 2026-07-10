@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>學習護照｜Gemini 教育應用指南</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<section class="alt" style="min-height:70vh"><div class="wrap">
+  <h1 class="pagetitle">學習護照</h1>
+  <p class="lead">你的學習足跡都在這裡：完成的站點、任務蓋章與成果記錄。資料儲存在這台電腦的瀏覽器，不會上傳。</p>
+
+  <div class="grid-entry" style="margin-bottom:40px">
+    <div class="card"><h3>學習路徑進度</h3>
+      <div class="progressbar" style="margin:16px 0" id="barPath"><div style="width:0"></div></div>
+      <p id="numPath" style="font-size:14px"></p></div>
+    <div class="card"><h3>任務卡進度</h3>
+      <div class="progressbar" style="margin:16px 0" id="barTasks"><div style="width:0"></div></div>
+      <p id="numTasks" style="font-size:14px"></p></div>
+  </div>
+
+  <div class="card pass-section">
+    <h3 style="margin-bottom:8px">我的蓋章</h3>
+    <div id="stampList"></div>
+  </div>
+
+  <div class="card pass-section">
+    <h3 style="margin-bottom:8px">我的學習成果記錄</h3>
+    <div id="noteList"></div>
+  </div>
+
+  <div style="text-align:right">
+    <button class="btn-danger" id="clearBtn">清除所有記錄</button>
+  </div>
+</div></section>
+<script src="app.js"></script>
+<script>
+renderNav("passport");renderFooter();
+function paint(){
+  const path=PASSPORT_ITEMS.filter(i=>i.kind==="學習路徑"),tasks=PASSPORT_ITEMS.filter(i=>i.kind==="任務卡");
+  const dp=path.filter(i=>ppIsDone(i.id)).length,dt=tasks.filter(i=>ppIsDone(i.id)).length;
+  document.querySelector("#barPath div").style.width=(PASSPORT_TOTALS.path.online?dp/PASSPORT_TOTALS.path.online*100:0)+"%";
+  document.querySelector("#barTasks div").style.width=(PASSPORT_TOTALS.tasks.online?dt/PASSPORT_TOTALS.tasks.online*100:0)+"%";
+  document.getElementById("numPath").textContent=`已完成 ${dp} / 已上線 ${PASSPORT_TOTALS.path.online}（全部 ${PASSPORT_TOTALS.path.all} 站規劃中）`;
+  document.getElementById("numTasks").textContent=`已完成 ${dt} / 已上線 ${PASSPORT_TOTALS.tasks.online}（全部 ${PASSPORT_TOTALS.tasks.all} 張規劃中）`;
+  const done=PASSPORT_ITEMS.filter(i=>ppIsDone(i.id));
+  document.getElementById("stampList").innerHTML=done.length?done.map(i=>
+    `<div class="pass-item"><span class="stamp">✓</span><span class="k">${i.kind}</span>
+     <a class="n ext" href="${i.href}">${i.title}</a><span class="d">${ppDoneDate(i.id)}</span></div>`).join("")
+    :'<p class="pass-empty">還沒有蓋章。到「學習路徑」或「任務卡」完成第一個項目吧！</p>';
+  const notes=PASSPORT_ITEMS.map(i=>({i,n:ppGetNote(i.id)})).filter(x=>x.n);
+  document.getElementById("noteList").innerHTML=notes.length?notes.map(x=>
+    `<div style="margin-bottom:16px"><a class="ext" href="${x.i.href}" style="font-size:15px;font-weight:600">${x.i.title}</a>
+     <div class="pass-note">${x.n.replace(/</g,"&lt;")}</div></div>`).join("")
+    :'<p class="pass-empty">還沒有記錄。完成任務時順手寫下成果與心得，之後研習分享超好用。</p>';
+}
+document.getElementById("clearBtn").addEventListener("click",()=>{
+  if(confirm("確定要清除所有蓋章、檢核與成果記錄嗎？此動作無法復原。")){ppClear();paint();}
+});
+paint();
+</script>
+</body>
+</html>

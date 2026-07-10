@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PARTS 提示詞架構｜Gemini 教育應用指南</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="head"><div class="wrap-read">
+  <a class="back" href="path.html">← 回學習路徑</a>
+  <h1>PARTS 提示詞架構</h1>
+  <p class="sub">與 AI 溝通的第一堂課：五個要素寫出精準指令</p>
+  <p class="meta">更新日期：2026-07-09</p>
+</div></header>
+<div class="body"><div class="wrap-read">
+  <h2>你遇到的困難</h2>
+  <p>想請 AI 幫忙備課，打了「幫我寫教案」，結果生出來的東西完全不能用——對象不對、格式不對、深度不對。問題通常不在 AI，而在指令少了關鍵資訊。</p>
+  <h2>PARTS 五要素</h2>
+  <p>把一個模糊的請求，拆成五個問題回答：</p>
+  <ul>
+    <li><strong>P - 角色（Persona）</strong>：AI 要扮演什麼角色？</li>
+    <li><strong>A - 行動（Act）</strong>：要完成什麼任務？</li>
+    <li><strong>R - 對象（Recipient）</strong>：成果要給誰看、為誰設計？</li>
+    <li><strong>T - 主題（Theme）</strong>：主題與細節有哪些？</li>
+    <li><strong>S - 結構（Structure）</strong>：用什麼格式或風格呈現？</li>
+  </ul>
+  <h2>實際範例：生成一節 40 分鐘的國語教案</h2>
+  <div class="prompt">
+    <div class="bar"><span class="label">提示詞範例（[方括號] 內請替換成你的內容）</span><button class="copy">一鍵複製</button></div>
+    <p class="text">你是一位資深國小[六年級]的[國語]老師，請幫我設計一堂 40 分鐘的[國語作文]教案，教學對象是國小[六年級]學生，課文是「[人生的開拓者，作者盧彥勳]」，教學目標需包含「[議論文中提方法教學]」，活動流程需有「引起動機、發展活動、綜合活動」，並結合「[互動遊戲]」與「[小組討論]」。請用「表格」形式呈現，欄位包含「活動流程」、「說明」、「時間」與「教材」。</p>
+  </div>
+  <p>對照看看：角色（資深國小六年級國語老師）、行動（設計 40 分鐘教案）、對象（六年級學生）、主題（課文與教學目標）、結構（表格與欄位）——五個要素都在，AI 的產出就會貼近你要的。</p>
+  <h2>不想手打？用工具</h2>
+  <ul>
+    <li><a class="ext" target="_blank" href="https://sites.google.com/view/ailiteracy-partspromptword">PARTS 提示詞機器人 ↗</a>：填五個欄位，自動組合成完整提示詞，一鍵複製</li>
+    <li><a class="ext" target="_blank" href="https://gemini.google.com/share/1de2b7a21af9">CRAFT 提示詞產生器 ↗</a>：原理相同的另一套架構，可在 Gemini Canvas 中保存成自己的專案，隨時修改重用</li>
+  </ul>
+  <h2>進階心法</h2>
+  <p><strong>連續追問，不要全盤接收。</strong>第一次產出只是草稿，繼續下指令調整：「第二個活動換成分組競賽」「時間改成 35 分鐘」。</p>
+  <p><strong>對齊概念：先討論再生成。</strong>送出前加一句，讓 AI 先跟你確認方向：</p>
+  <div class="prompt">
+    <div class="bar"><span class="label">提示詞範例</span><button class="copy">一鍵複製</button></div>
+    <p class="text">&lt;注意&gt;請不要直接生成，請先與我討論後再生成。</p>
+  </div>
+  <p><strong>自創架構。</strong>PARTS 不是固定公式。熟練後可以請 AI 幫你設計適合自己任務的提示詞架構——用 AI 魔法打敗 AI：</p>
+  <div class="prompt">
+    <div class="bar"><span class="label">提示詞範例</span><button class="copy">一鍵複製</button></div>
+    <p class="text">你是一位提示詞架構專家，請提供我適合初學者使用的三種提示詞架構，讓我能快速掌握提示詞使用技巧，並提供我提示詞架構的使用說明，請以表格方式呈現。</p>
+  </div>
+  <div class="check">
+    <p class="t">人工查證提醒</p>
+    <p>AI 生成的教案、內容可能有事實錯誤或不符合你的班級狀況。我們具有教師專業——請應用參考、追問與微調，盡量不要全盤接受。</p>
+  </div>
+  <div style="text-align:center;margin:32px 0">
+    <button class="btn-stamp" id="stampBtn">完成了嗎？點我蓋章</button>
+  </div>
+  <div class="source">
+    <p class="t">完整圖文教學</p>
+    <a class="ext" target="_blank" href="https://quirky-mile-812.notion.site/AI-2ed1a30dba1f809eaa1dc5d2b4bdf880">Notion 原文：[AI入門] 提示詞的基礎魔法詠唱 ↗</a>
+  </div>
+</div></div>
+<script src="app.js"></script>
+<script>renderNav("path");renderFooter();bindCopy();bindStamp("module-parts");</script>
+</body>
+</html>

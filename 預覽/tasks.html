@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>任務卡｜Gemini 教育應用指南</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<section style="min-height:70vh"><div class="wrap">
+  <h1 class="pagetitle">任務卡</h1>
+  <p class="lead">已經有明確要做的事？依你的身分和熟悉度篩選，直接跳到做法與提示詞。</p>
+  <div class="progresswrap"><span class="pt">我的進度</span>
+    <div class="progressbar" id="ppBar"><div style="width:0"></div></div>
+    <span class="pn" id="ppNum"></span>
+    <a href="passport.html" class="ext" style="font-size:13px">查看學習護照 →</a></div>
+  <div class="chips" id="filters">
+    <button class="chip active" data-type="aud" data-v="all">全部對象</button>
+    <button class="chip" data-type="aud" data-v="teacher">教師</button>
+    <button class="chip" data-type="aud" data-v="admin">行政</button>
+    <button class="chip" data-type="aud" data-v="trainer">講師</button>
+    <span class="sep">｜</span>
+    <button class="chip active" data-type="lv" data-v="all">全部難度</button>
+    <button class="chip" data-type="lv" data-v="入門">入門</button>
+    <button class="chip" data-type="lv" data-v="進階">進階</button>
+    <button class="chip" data-type="lv" data-v="挑戰">挑戰</button>
+  </div>
+  <div class="grid" id="taskGrid">
+    <a class="card task" data-aud="teacher" data-lv="入門" data-pp="task-parts-first" href="parts-task.html">
+      <div class="badges"><span class="badge beginner">入門</span><span class="aud">教師</span></div>
+      <h3 style="font-size:17px">用 PARTS 寫出第一個教案提示詞</h3>
+      <p>把「幫我寫教案」升級成 AI 一次到位的精準指令。</p>
+      <p class="go">3 項準備資料・約 15 分鐘 →</p></a>
+    <div class="card task soon" data-aud="admin" data-lv="入門">
+      <div class="badges"><span class="badge beginner">入門</span><span class="aud">行政</span></div>
+      <h3 style="font-size:17px">用公文小幫手 Gem 草擬擬辦單</h3>
+      <p>貼上來文主旨與說明，快速產出擬辦意見草稿。</p>
+      <p class="go">教材整理中，即將推出</p></div>
+    <div class="card task soon" data-aud="teacher" data-lv="入門">
+      <div class="badges"><span class="badge beginner">入門</span><span class="aud">教師</span></div>
+      <h3 style="font-size:17px">用 NotebookLM 從課本生成課後測驗</h3>
+      <p>上傳書商 PDF，產出附來源編號、可查證的測驗題。</p>
+      <p class="go">教材整理中，即將推出</p></div>
+    <div class="card task soon" data-aud="teacher" data-lv="進階">
+      <div class="badges"><span class="badge mid">進階</span><span class="aud">教師</span></div>
+      <h3 style="font-size:17px">用 Canvas 做一個班級經營小工具</h3>
+      <p>從聯絡簿投影到考試計時，描述需求就能生成可用網頁。</p>
+      <p class="go">教材整理中，即將推出</p></div>
+    <p class="empty" id="emptyMsg" style="display:none">這個組合目前沒有任務卡，換個篩選條件試試。</p>
+  </div>
+</div></section>
+<script src="app.js"></script>
+<script>
+renderNav("tasks");renderFooter();paintProgress("tasks");
+const state={aud:"all",lv:"all"};
+document.getElementById("filters").addEventListener("click",e=>{
+  const b=e.target.closest(".chip");if(!b)return;
+  state[b.dataset.type==="aud"?"aud":"lv"]=b.dataset.v;
+  document.querySelectorAll(`.chip[data-type=${b.dataset.type}]`).forEach(c=>c.classList.toggle("active",c===b));
+  let shown=0;
+  document.querySelectorAll("#taskGrid .task").forEach(c=>{
+    const ok=(state.aud==="all"||c.dataset.aud===state.aud)&&(state.lv==="all"||c.dataset.lv===state.lv);
+    c.style.display=ok?"":"none";if(ok)shown++;
+  });
+  document.getElementById("emptyMsg").style.display=shown?"none":"";
+});
+</script>
+</body>
+</html>

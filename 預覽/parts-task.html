@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>用 PARTS 寫出第一個教案提示詞｜Gemini 教育應用指南</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="head"><div class="wrap-read">
+  <a class="back" href="tasks.html">← 回任務卡</a>
+  <div class="badges" style="margin-top:12px"><span class="badge beginner">入門</span><span class="aud">教師・約 15 分鐘</span></div>
+  <h1>用 PARTS 寫出第一個教案提示詞</h1>
+  <p class="sub">把「幫我寫教案」升級成 AI 一次到位的精準指令。</p>
+  <div class="prepare">
+    <p class="t">開始前請準備</p>
+    <ul>
+      <li>一課的課文名稱或單元主題</li>
+      <li>教學對象年級</li>
+      <li>希望包含的活動類型（如小組討論、遊戲）</li>
+    </ul>
+  </div>
+</div></header>
+<div class="body"><div class="wrap-read">
+  <h2>步驟</h2>
+  <ol>
+    <li><strong>打開 <a class="ext" target="_blank" href="https://sites.google.com/view/ailiteracy-partspromptword">PARTS 提示詞機器人 ↗</a></strong>，依序填入五個欄位：角色、行動、對象、主題、結構。</li>
+    <li><strong>點「一鍵複製」</strong>，把組合好的提示詞貼到 Gemini 對話框（模式選「快捷」即可）。</li>
+    <li><strong>檢查產出</strong>：活動流程合理嗎？時間分配符合你的課堂節奏嗎？</li>
+    <li><strong>連續追問調整</strong>：「第二個活動換成分組競賽」「加入形成性評量」。</li>
+  </ol>
+  <h2>直接套用的範例</h2>
+  <div class="prompt">
+    <div class="bar"><span class="label">提示詞範例（[方括號] 內請替換成你的內容）</span><button class="copy">一鍵複製</button></div>
+    <p class="text">你是一位資深國小[五年級]的[社會]老師，請幫我設計[兩堂 40 分鐘]的[社會]課教案，教學對象是國小[五年級]學生，單元是「[大航海時代下台灣的經營]」。每節課需包含課前預習及課後測驗，課後測驗為[十題中等難度選擇題]請附上答案。請用「表格」形式呈現，欄位包含「活動流程」、「說明」、「時間」與「教材」。</p>
+  </div>
+  <h2>自我檢核（點一下打勾，自動儲存）</h2>
+  <div style="margin-bottom:16px">
+    <label class="checkrow"><input type="checkbox"><span>教案表格欄位齊全、時間加總正確</span></label>
+    <label class="checkrow"><input type="checkbox"><span>內容對應你指定的課文，不是泛泛而談</span></label>
+    <label class="checkrow"><input type="checkbox"><span>我有修改過至少一處——AI 的版本永遠是草稿</span></label>
+  </div>
+  <h2>學習成果記錄</h2>
+  <p style="font-size:14px;color:var(--ink48)">記下你這次做出來的成果、遇到的問題或下次想試的做法（自動儲存在這台電腦的瀏覽器）。</p>
+  <textarea class="notebox" id="noteBox" placeholder="例如：完成了社會科 4-2 的兩節課教案，測驗題有兩題太難，下次請 AI 出題時要指定難度分布…"></textarea>
+  <p class="savehint">輸入後自動儲存 ✓</p>
+  <div style="text-align:center;margin:32px 0">
+    <button class="btn-stamp" id="stampBtn">完成了嗎？點我蓋章</button>
+  </div>
+  <div class="check">
+    <p class="t">人工查證提醒</p>
+    <p>AI 生成的內容可能出錯。請以你的教學專業查證教材事實、檢查是否符合班級程度，再實際使用。</p>
+  </div>
+</div></div>
+<script src="app.js"></script>
+<script>renderNav("tasks");renderFooter();bindCopy();bindStamp("task-parts-first");bindChecks("task-parts-first");bindNote("task-parts-first");</script>
+</body>
+</html>

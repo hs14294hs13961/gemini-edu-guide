@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>工具箱｜Gemini 教育應用指南</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<section class="alt" style="min-height:70vh"><div class="wrap">
+  <h1 class="pagetitle">工具箱</h1>
+  <p class="lead">本站教「怎麼用」；要「直接用」的工具都在這裡。用標籤篩選，點了就能開工。</p>
+  <div class="chips" id="tagFilters"></div>
+  <div class="grid" id="toolGrid"></div>
+</div></section>
+<script src="app.js"></script>
+<script>
+renderNav("toolbox");renderFooter();
+// 工具資料——新增工具只要在這裡加一個物件（GAS 排最前）
+const TOOLS=[
+  {name:"研習提示詞庫",desc:"備課、簡報、測驗等情境提示詞，分類查找、一鍵複製",tags:["GAS","提示詞"],
+   url:"https://script.google.com/macros/s/AKfycbxONvJkGInuIZo-evVJ6EIqAE7yJBgRfthjE7iU5bknE0dM3S4EpFBmguyh3S_U2f6Fcw/exec"},
+  {name:"十二年課綱課程計畫資料庫",desc:"總綱、領綱學習表現、議題融入，一鍵複製",tags:["GAS"],
+   url:"https://script.google.com/macros/s/AKfycbzqNkdEh7xv7PGkXEnulS9CpApb0oMkMu74x1s3Z9iHtDIxuBKk-XqoFZ8Un1jzeXzDqg/exec"},
+  {name:"薇糖紹冰的教學日誌",desc:"班級經營、AI 工具、圖片生成作品總入口",tags:["GAS"],
+   url:"https://script.google.com/macros/s/AKfycbxEK3hZwPVPvRgPgf1a5Vl6BGB6bNu5sJTn0GPNwaTA8EYTmkVtbaHwEHkEW-RRqVwx/exec"},
+  {name:"PARTS 提示詞機器人",desc:"三步驟產出結構化提示詞，一鍵複製",tags:["提示詞"],
+   url:"https://sites.google.com/view/ailiteracy-partspromptword"},
+  {name:"CRAFT 提示詞產生器",desc:"可保存在 Gemini 的提示詞合併與優化工具",tags:["提示詞","Canvas 作品"],
+   url:"https://gemini.google.com/share/1de2b7a21af9"},
+  {name:"海報圖生成大師 Gem",desc:"提供內容與想法，三步驟生成教學海報",tags:["Gem"],
+   url:"https://gemini.google.com/gem/119RwSHHz3Q0chz478cyIuetg-pcz8DfD"},
+  {name:"公文小幫手 Gem",desc:"擬辦單與簽案草稿的行政好夥伴",tags:["Gem"],
+   url:"https://gemini.google.com/gem/1FWh70Ae6JX_4CZmrGh3dWk2R2_UCG-6I"},
+  {name:"聖誕小遊戲",desc:"Canvas 製作的注音介面班級互動遊戲範例",tags:["Canvas 作品"],
+   url:"https://gemini.google.com/share/98ff1a97e01e"},
+  {name:"教師聯絡簿、考試專用投影系統",desc:"考程表、聯絡簿投影、時鐘廣播的班級經營工具",tags:["Drive 資源","Canvas 作品"],
+   url:"https://drive.google.com/drive/folders/1N2M9RqCtSIKXJrm3l3Dm0RRV5v-bd21z"},
+  {name:"PDF 拆分合併小工具",desc:"通用版 PDF 處理工具，離線可用",tags:["Drive 資源"],
+   url:"https://drive.google.com/drive/folders/1Kkm36z2DWdjNZ7ZNU226uL__yU3pAKFq"},
+];
+const TAG_ORDER=["GAS","Gem","提示詞","Canvas 作品","Drive 資源"];
+let cur="all";
+function renderTags(){
+  const el=document.getElementById("tagFilters");
+  el.innerHTML=`<button class="chip ${cur==="all"?"active":""}" data-t="all">全部</button>`+
+    TAG_ORDER.map(t=>`<button class="chip ${cur===t?"active":""}" data-t="${t}">${t}</button>`).join("");
+}
+function renderTools(){
+  const el=document.getElementById("toolGrid");
+  const list=cur==="all"?TOOLS:TOOLS.filter(t=>t.tags.includes(cur));
+  el.innerHTML=list.map(t=>`<a class="card" target="_blank" href="${t.url}">
+    <div class="badges">${t.tags.map(g=>`<span class="tag">${g}</span>`).join("")}</div>
+    <h3 style="font-size:17px">${t.name}</h3><p>${t.desc}</p><p class="go">前往工具 ↗</p></a>`).join("");
+}
+document.getElementById("tagFilters").addEventListener("click",e=>{
+  const b=e.target.closest(".chip");if(!b)return;cur=b.dataset.t;renderTags();renderTools();
+});
+renderTags();renderTools();
+</script>
+</body>
+</html>

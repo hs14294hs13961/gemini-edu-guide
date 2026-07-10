@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-size: 17px; /* Apple 節奏：正文 17px */
+  }
+  body {
+    @apply bg-canvas text-ink antialiased;
+  }
+}
+
+@layer components {
+  /* 卡片：白底 + 1px hairline + 18px 圓角 + 24px 內距，無陰影 */
+  .card {
+    @apply bg-canvas border border-hairline rounded-card p-6;
+  }
+  /* 膠囊按鈕（唯一互動色） */
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-full bg-primary text-white
+      px-6 py-2.5 text-[15px] font-semibold transition
+      hover:bg-primary-focus active:scale-95;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-full border border-primary
+      text-primary px-6 py-2.5 text-[15px] font-semibold transition
+      hover:bg-primary hover:text-white active:scale-95;
+  }
+  .chip {
+    @apply inline-flex items-center rounded-full border border-hairline px-3 py-1
+      text-[13px] text-ink-80 bg-canvas;
+  }
+  .chip-active {
+    @apply border-primary bg-primary text-white;
+  }
+}
+
+/* 教材內文排版（不依賴 typography plugin） */
+.prose-edu h2 {
+  @apply mb-3 mt-10 text-[26px] font-semibold tracking-tight first:mt-0;
+}
+.prose-edu h3 {
+  @apply mb-2 mt-8 text-[20px] font-semibold;
+}
+.prose-edu p {
+  @apply mb-4 text-[17px] leading-relaxed text-ink-80;
+}
+.prose-edu ul, .prose-edu ol {
+  @apply mb-4 space-y-1.5 pl-5 text-[17px] leading-relaxed text-ink-80;
+}
+.prose-edu ul { @apply list-disc; }
+.prose-edu ol { @apply list-decimal; }
+.prose-edu strong { @apply font-semibold text-ink; }
+.prose-edu a { @apply text-primary hover:underline; }
+.prose-edu hr { @apply my-8 border-divider-soft; }
+.prose-edu table { @apply mb-4 w-full border-collapse text-[15px]; }
+.prose-edu th { @apply border-b border-hairline px-3 py-2 text-left font-semibold; }
+.prose-edu td { @apply border-b border-divider-soft px-3 py-2 text-ink-80; }
