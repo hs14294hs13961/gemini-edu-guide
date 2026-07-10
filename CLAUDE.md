@@ -52,7 +52,8 @@ npm run lint     # 程式碼檢查
 - 正式網站：https://gemini-edu-guide.vercel.app
 - GitHub：https://github.com/hs14294hs13961/gemini-edu-guide（公開）；Vercel 專案 root directory=`site`
 - Cowork 沙盒的 npm 與 github.com 被網路政策擋（403），因此：改檔＝開「github.com/<repo>/upload/main/<目標資料夾>」用 file_upload 工具上傳同名檔覆蓋；建置驗證看 Vercel deployment 頁（錯誤點「3 errors」篩選）
-- 已踩過的雷：客戶端元件不可 import `lib/content.ts`（含 fs），共用型別/常數放 `lib/taxonomy.ts`；MDX 內文的 `<中文標籤>` 要寫成 `{'<...>'}` 或用 `{`模板字串`}`；`next-mdx-remote` 需 ^6（v5 有漏洞會被 Vercel 擋）
+- 已踩過的雷：客戶端元件不可 import `lib/content.ts`（含 fs），共用型別/常數放 `lib/taxonomy.ts`；`next-mdx-remote` 需 ^6（v5 有漏洞會被 Vercel 擋）
+- **MDX 鐵則（v6 實測）**：MDX 內**不可用 JSX 表達式**——`{'...'}`、`{`模板字串`}`、`items={[...]}` 都會渲染成空白！提示詞一律用純文字寫在 `<Prompt>` 標籤內；含 `<角括號>` 的句子整句用反引號（行內程式碼）包住；任務自我檢核清單放 frontmatter 的 `selfcheck:` 欄位（任務頁會自動渲染），不要在 MDX 內文用 `<SelfCheck>`
 - 本地備援：git repo 放沙盒（GIT_DIR 外置，雲端同步碟不允許 git 鎖定檔），每輪 commit 後輸出 `版本備份/gemini-edu-guide.bundle`
 - 每完成一輪修改：commit ＋ 更新 bundle ＋ 推 GitHub，三者同步
 
