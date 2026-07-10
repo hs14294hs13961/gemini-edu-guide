@@ -16,11 +16,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="zh-TW">
       <body className="font-sans">
         <nav className="sticky top-0 z-50 bg-black text-white/85">
-          <div className="mx-auto flex h-12 max-w-[1400px] items-center justify-between gap-4 px-6">
-            <Link href="/" className="shrink-0 text-[15px] font-semibold text-white">
+          <div className="mx-auto flex h-14 max-w-[1400px] items-center gap-10 px-6">
+            <Link href="/" className="shrink-0 text-[18px] font-semibold text-white">
               Gemini 教育應用指南
             </Link>
-            <div className="hidden gap-7 text-[13px] sm:flex">
+            <div className="hidden flex-1 gap-8 text-[15px] sm:flex">
               <Link href="/path/" className="transition hover:text-white">學習路徑</Link>
               <Link href="/tasks/" className="transition hover:text-white">任務卡</Link>
               <Link href="/toolbox/" className="transition hover:text-white">工具箱</Link>
